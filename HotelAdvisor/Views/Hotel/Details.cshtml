@@ -1,7 +1,7 @@
 ﻿@using System.Globalization;
 @model HotelAdvisor.Models.HotelDetailsViewModel
 
-<div><img src=@Url.Action("getImages", "Hotel", new { id = Model.HotelId }) alt="Hotel Image" width="500px" height="250px" /> </div>
+<div><img src="@Model.Image" alt="Hotel Image" width="500px" height="250px" /> </div>
 <div>
     <h2>@Html.DisplayFor(model => model.HotelName)</h2>
 

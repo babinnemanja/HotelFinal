@@ -18,14 +18,13 @@ namespace HotelAdvisor.Migrations
 
         protected override void Seed(HotelAdvisor.Models.HotelAdvisorContext context)
         {
-            // get image byte array
-            string parkImage = "\\Content\\HotelImages\\hotel-park-novi-sad.jpg";
-            string centarImage = "\\Content\\HotelImages\\hotel-centar-izgled-spolja.jpg";
-            string putnikImage = "\\Content\\HotelImages\\hotel-putnik_508f9bac6af3f.jpg";
-            string panoramaImage = "\\Content\\HotelImages\\hotel-panorama_508f98d5d1faf.jpg";
-            string fontanaImage = "\\Content\\HotelImages\\69_1233757047_noviiiiiii.jpg";
-            string dashImage = "\\Content\\HotelImages\\6.jpg";
-
+            
+            string parkImage = "/Content/HotelImages/hotel-park-novi-sad.jpg";
+            string centarImage = "/Content/HotelImages/hotel-centar-izgled-spolja.jpg";
+            string putnikImage = "/Content/HotelImages/hotel-putnik_508f9bac6af3f.jpg";
+            string panoramaImage = "/Content/HotelImages/hotel-panorama_508f98d5d1faf.jpg";
+            string fontanaImage = "/Content/HotelImages/69_1233757047_noviiiiiii.jpg";
+            string dashImage = "/Content/HotelImages/6.jpg";
 
             var hotels = new List<Hotel>
             {

@@ -9,16 +9,15 @@ namespace HotelAdvisor.Models
     public class HotelDetailsViewModel
     {
         public int HotelId { get; set; }
-
         public string HotelName { get; set; }
+        public string Image { get; set; }
 
         [Display(Name = "Average rating")]
         public decimal AverageRating { get; set; }
 
-        public string Image { get; set; }
-
         [Display(Name = "Total reviews")]
-        public int TotalReveiws { get; set; }
+        public int TotalReviews { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
 
         public string Address { get; set; }
 
@@ -27,7 +26,5 @@ namespace HotelAdvisor.Models
         public string City { get; set; }
 
         public string Description { get; set; }
-
-        public List<Comment> Comments { get; set; }
     }
 }

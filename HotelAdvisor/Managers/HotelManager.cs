@@ -64,7 +64,8 @@ namespace HotelAdvisor.Managers
                             Address = hotel.Address,
                             City = hotel.City,
                             HouseNumber = hotel.HouseNumber,
-                            AverageRating = hotel.Comments.Count() == 0 ? 0 : hotel.Comments.Average(c => c.Rating)
+                            AverageRating = hotel.Comments.Count() == 0 ? 0 : hotel.Comments.Average(c => c.Rating),
+                            Image = hotel.Image
                             //TotalReviews = hotel.Comments.Count(),
                             //Comments = hotel.Comments.Select(co => new CommentViewModel() 
                             //{ 
@@ -87,23 +88,33 @@ namespace HotelAdvisor.Managers
         {
             HotelDetailsViewModel hotelDetails = new HotelDetailsViewModel();
 
-            using (var context = new HotelAdvisorContext())
+            using (var dbContext = new HotelAdvisorContext())
             {
-                hotelDetails = context.Hotels.Where(h => h.Id == hotelId).Include(h => h.Comments).Select(
-                    s => new HotelDetailsViewModel()
-                    {
-                        HotelId = s.Id,
-                        HotelName = s.Name,
-                        City = s.City,
-                        Description = s.Description,
-                        Address = s.Address,
-                        Image = s.Image,
-                        TotalReveiws = s.Comments.Count(),
-                        AverageRating = (s.Comments.Count() == 0) ? 0 : s.Comments.Average(c => c.Rating),
-                        Comments = s.Comments.ToList()
-                    }).FirstOrDefault();
-            }
+                Hotel hotel = dbContext.Hotels.Include(h => h.Comments)
+                    .FirstOrDefault(h => h.Id == hotelId);
 
+
+                hotelDetails =
+                    new HotelDetailsViewModel()
+                    {
+                        HotelName = hotel.Name,
+                        HotelId = hotel.Id,
+                        AverageRating = hotel.Comments.Count() == 0 ? 0 : hotel.Comments.Average(c => c.Rating),
+                        TotalReviews = hotel.Comments.Count(),
+                        Image = hotel.Image,
+                        Comments = hotel.Comments.Select(co => new CommentViewModel()
+                        {
+                            UserName = co.User.UserName,
+                            Text = co.Text,
+                            Title = co.Title,
+                            DateAdded = co.DateAdded,
+                            Rating = co.Rating,
+                            Id = co.Id
+                        }).ToList()
+
+                    };
+
+            }
             return hotelDetails;
         }
 
