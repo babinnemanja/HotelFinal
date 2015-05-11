@@ -1,0 +1,15 @@
+﻿@model IEnumerable<HotelAdvisor.Models.Comment>
+
+@foreach (var item in Model)
+{
+    <div>
+        @Html.DisplayFor(i=>item.DateAdded)
+    </div>
+    <div>
+        <h4>@Html.DisplayFor(i=>item.Title)</h4>
+    </div>
+    <div>
+        <p>@Html.DisplayFor(i => item.Text)</p>
+    </div>
+    <hr />
+}
