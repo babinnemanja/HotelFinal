@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Web;
 
-namespace HotelAdvisor.Controllers
+namespace HotelAdvisor.Models
 {
     public class HotelViewModel
     {
@@ -26,7 +27,9 @@ namespace HotelAdvisor.Controllers
 
         public string City { get; set; }
 
-        public string Image { get; set; }
+        public HttpPostedFileBase Image { get; set; }
+
+        public string ImagePath { get; set; }
 
         [Display(Name = "Active")]
         public bool IsActive { get; set; }

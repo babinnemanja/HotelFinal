@@ -153,11 +153,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Content\HotelImages\App_Start\BundleConfig.cs" />
-    <Compile Include="Content\HotelImages\App_Start\FilterConfig.cs" />
-    <Compile Include="Content\HotelImages\App_Start\IdentityConfig.cs" />
-    <Compile Include="Content\HotelImages\App_Start\RouteConfig.cs" />
-    <Compile Include="Content\HotelImages\App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -246,9 +246,11 @@
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
     <Content Include="Views\Hotel\_CommentListForHotel.cshtml" />
+    <Content Include="Views\Hotel\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

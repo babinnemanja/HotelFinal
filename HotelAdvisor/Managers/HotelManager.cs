@@ -124,7 +124,7 @@ namespace HotelAdvisor.Managers
             this.hotel.Name = newHotel.Name;
             this.hotel.Address = newHotel.Address;
             this.hotel.Description = newHotel.Description;
-            this.hotel.Image = newHotel.Image;
+            this.hotel.Image = string.IsNullOrEmpty(newHotel.Image) ? this.hotel.Image : newHotel.Image;
             this.hotel.City = newHotel.City;
             this.hotel.HouseNumber = newHotel.HouseNumber;
             this.hotel.IsActive = newHotel.IsActive;

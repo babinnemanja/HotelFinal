@@ -161,4 +161,3 @@ D:\Work\HotelFinal\HotelAdvisor\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Work\HotelFinal\HotelAdvisor\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Work\HotelFinal\HotelAdvisor\obj\Debug\HotelAdvisor.dll
 D:\Work\HotelFinal\HotelAdvisor\obj\Debug\HotelAdvisor.pdb
-D:\Work\HotelFinal\HotelAdvisor\obj\Debug\HotelAdvisor.csprojResolveAssemblyReference.cache

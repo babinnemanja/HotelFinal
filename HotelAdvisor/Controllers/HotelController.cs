@@ -2,6 +2,7 @@
 using HotelAdvisor.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,7 +20,7 @@ namespace HotelAdvisor.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -28,11 +29,22 @@ namespace HotelAdvisor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        ///[Authorize(Roles = "Admin")]
         public ActionResult Create(HotelViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var fileName = string.Empty;
+
+                if (model != null && model.Image.ContentLength > 0)
+                {
+                    // extract only the fielname
+                    fileName = Path.GetFileName(model.Image.FileName);
+                    // store the file inside ~/Content/HotelImages folder
+                    var path = Path.Combine(Server.MapPath("~/Content/HotelImages"), fileName);
+                    model.Image.SaveAs(path);
+                }
+
                 HotelManager manager = new HotelManager();
                 Hotel hotel = new Hotel();
                 hotel.Name = model.Name;
@@ -41,7 +53,7 @@ namespace HotelAdvisor.Controllers
                 hotel.Address = model.Address;
                 hotel.HouseNumber = model.HouseNumber;
                 hotel.IsActive = model.IsActive;
-                hotel.Image = model.Image;
+                hotel.Image = "/Content/HotelImages/" + fileName;
                 manager.Create(hotel);
 
                 return RedirectToAction("Index");
@@ -50,7 +62,7 @@ namespace HotelAdvisor.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             HotelManager manager = new HotelManager();
@@ -64,6 +76,7 @@ namespace HotelAdvisor.Controllers
             hotel.Address = model.Address;
             hotel.HouseNumber = model.HouseNumber;
             hotel.IsActive = model.IsActive;
+            hotel.ImagePath = model.Image;
 
             return View(hotel);
         }
@@ -71,11 +84,21 @@ namespace HotelAdvisor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Edit(HotelViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var fileName = string.Empty;
+
+                if (model.Image != null)
+                {
+                    // extract only the fielname
+                    fileName = Path.GetFileName(model.Image.FileName);
+                    // store the file inside ~/Content/HotelImages folder
+                    var path = Path.Combine(Server.MapPath("~/Content/HotelImages"), fileName);
+                    model.Image.SaveAs(path);
+                }
 
                 HotelManager manager = new HotelManager();
                 Hotel hotel = new Hotel();
@@ -86,7 +109,7 @@ namespace HotelAdvisor.Controllers
                 hotel.Address = model.Address;
                 hotel.HouseNumber = model.HouseNumber;
                 hotel.IsActive = model.IsActive;
-                hotel.Image = hotel.Image;
+                hotel.Image = string.IsNullOrEmpty(fileName) ? null : "/Content/HotelImages/" + fileName; 
 
                 manager.Edit(hotel);
 
