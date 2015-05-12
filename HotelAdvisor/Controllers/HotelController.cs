@@ -20,7 +20,7 @@ namespace HotelAdvisor.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -29,7 +29,7 @@ namespace HotelAdvisor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        ///[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(HotelViewModel model)
         {
             if (ModelState.IsValid)
@@ -62,7 +62,7 @@ namespace HotelAdvisor.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             HotelManager manager = new HotelManager();
@@ -84,7 +84,7 @@ namespace HotelAdvisor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(HotelViewModel model)
         {
             if (ModelState.IsValid)
